@@ -4,7 +4,7 @@ from datetime import datetime
 import json
 
 
-api_address = "localhost"
+api_address = "exam_docker_network"
 api_port = 8000
 
 

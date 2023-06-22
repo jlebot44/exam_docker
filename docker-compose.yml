@@ -1,0 +1,46 @@
+version: "3.9"
+services:
+  DS_API:
+    image: datascientest/fastapi:1.0.0
+    container_name: api_to_test
+    ports:
+      - "8000:8000"
+    networks:
+      - exam_docker_network
+  test_authentication:
+    image: test_authentication:latest
+    environment:
+      - LOG=1
+    volumes:
+      - exam_docker:/home/exam_docker
+    networks:
+      - exam_docker_network
+    depends_on:
+      - DS_API
+  test_authorization:
+    image: test_authorization:latest
+    environment:
+      - LOG=1
+    volumes:
+      - exam_docker:/home/exam_docker
+    networks:
+      - exam_docker_network
+    depends_on:
+      - DS_API
+  test_content:
+    image: test_content
+    environment:
+      - LOG=1
+    volumes:
+      - exam_docker:/home/exam_docker
+    networks:
+      - exam_docker_network
+    depends_on:
+      - DS_API
+
+volumes:
+  exam_docker:
+    external: true
+
+networks:
+  exam_docker_network:

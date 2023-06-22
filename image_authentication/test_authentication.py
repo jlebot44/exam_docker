@@ -4,7 +4,7 @@ from datetime import datetime
 
 
 #application variables
-api_address = "172.17.0.2"
+api_address = "api_to_test"
 api_port = 8000
 log_dir = "/home/exam_docker/log/"
 log_file = "log.txt"

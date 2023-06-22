@@ -1,27 +1,27 @@
 lancement du container API
-docker container run -d -p 8000:8000 datascientest/fastapi:1.0.0
+docker container run -d -p 8000:8000 --network exam_docker_network --name api_to_test datascientest/fastapi:1.0.0
 
 compile docker image
 status
 docker image build . -t test_status:latest
 
-authentication
+builds
 docker image build . -t test_authentication:latest
+docker image build . -t test_authorization:latest 
+docker image build . -t test_content:latest 
 
 
 
 
 lancement du container ubuntu de control
-docker container run -it --name image_control -e "LOG=1" --mount type=volume,src=exam_docker,dst=/home/exam_docker --rm image_control:0.0.1 bash
+docker container run -it --name image_control --network exam_docker_network -e "LOG=1" --mount type=volume,src=exam_docker,dst=/home/exam_docker --rm image_control:0.0.1 bash
 
-lancement du container test status
-docker container run -d --name test_status -e "LOG=1" --mount type=volume,src=exam_docker,dst=/home/exam_docker --rm test_status:latest bash
 
 lancement du container test authentication
-docker container run -d --name test_authentication -e "LOG=1" --mount type=volume,src=exam_docker,dst=/home/exam_docker --rm test_authentication:latest bash
+docker container run -d --name test_authentication --network exam_docker_network -e "LOG=1" --mount type=volume,src=exam_docker,dst=/home/exam_docker --rm test_authentication:latest bash
 
 lancement du container test authorization
-docker container run -d --name test_authorization -e "LOG=1" --mount type=volume,src=exam_docker,dst=/home/exam_docker --rm test_authorisation:latest bash
+docker container run -d --name test_authorization --network exam_docker_network -e "LOG=1" --mount type=volume,src=exam_docker,dst=/home/exam_docker --rm test_authorisation:latest bash
 
 lancement du container test content
-docker container run -d --name test_content -e "LOG=1" --mount type=volume,src=exam_docker,dst=/home/exam_docker --rm test_content:latest bash
+docker container run -d --name test_content --network exam_docker_network -e "LOG=1" --mount type=volume,src=exam_docker,dst=/home/exam_docker --rm test_content:latest bash
