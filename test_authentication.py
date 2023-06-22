@@ -57,12 +57,12 @@ print("test :", r.status_code)
 
 ##2nd test
 r = requests.get(
-    url='http://localhost:8000/v1/sentiment',
+    url='http://localhost:8000/v2/sentiment',
     params= {
         'username': 'alice',
         'password': 'wonderland',
-        'sentence': 'piece of shit'
+        'sentence': 'fuck you'
     }
 )
 
-print("second test :", r.status_code)
+print("second test :", r.status_code, r.text)
