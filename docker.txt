@@ -22,3 +22,6 @@ docker container run -d --name test_authentication -e "LOG=1" --mount type=volum
 
 lancement du container test authorization
 docker container run -d --name test_authorization -e "LOG=1" --mount type=volume,src=exam_docker,dst=/home/exam_docker --rm test_authorisation:latest bash
+
+lancement du container test content
+docker container run -d --name test_content -e "LOG=1" --mount type=volume,src=exam_docker,dst=/home/exam_docker --rm test_content:latest bash

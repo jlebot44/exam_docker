@@ -4,23 +4,27 @@ from datetime import datetime
 import json
 
 
+#application variables
 api_address = "172.17.0.2"
 api_port = 8000
-test_name = "test #3 - content"
+log_dir = "/home/exam_docker/log/"
+log_file = "log.txt"
 
 
+#test variables
 username="alice"
 password="wonderland"
 versions=["v1", "v2"]
 sentences = ["life is beautiful", "that sucks" ]
+test_name = "test #3 - content"
 
-log_dir = "/home/exam_docker/log/"
-log_file = "log.txt"
 
+#creation of log directory if doesn't exist
 if not os.path.isdir(log_dir):
     os.mkdir(log_dir, mode=0o755)
 
 
+#test execution
 if os.environ.get("LOG") == '1':
     with open(log_dir + log_file, 'a') as file:
         file.write(datetime.now().strftime("%d/%m/%Y %H:%M:%S") +\

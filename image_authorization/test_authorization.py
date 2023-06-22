@@ -3,22 +3,26 @@ import os
 from datetime import datetime
 
 
+#application variables
 api_address = "172.17.0.2"
 api_port = 8000
+log_dir = "/home/exam_docker/log/"
+log_file = "log.txt"
+
+
+#tests variables
 test_name = "test #2 - autorization"
-
-
 username=["alice", "bob"]
 password=["wonderland", "builder"]
 versions=["v1", "v2"]
 
-log_dir = "/home/exam_docker/log/"
-log_file = "log.txt"
 
+#creation of log directory if doesn't exist
 if not os.path.isdir(log_dir):
     os.mkdir(log_dir, mode=0o755)
 
 
+#test execution
 if os.environ.get("LOG") == '1':
     with open(log_dir + log_file, 'a') as file:
         file.write(datetime.now().strftime("%d/%m/%Y %H:%M:%S") +\
