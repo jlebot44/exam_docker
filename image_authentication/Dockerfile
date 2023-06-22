@@ -6,8 +6,8 @@ RUN apt-get update \
     pip \
     && pip install requests
 
-ADD test_status.py /my_server/test_status.py
+ADD test_authentication.py /home/test_authentication.py
 
-WORKDIR /my_server
+WORKDIR /home
 
-ENTRYPOINT ["python3", "test_status.py"]
+ENTRYPOINT ["python3", "test_authentication.py"]
