@@ -1,0 +1,11 @@
+lancement du container API
+
+docker container run -d -p 8000:8000 datascientest/fastapi:1.0.0
+
+
+
+lancement du container ubuntu de control
+docker container run -it --name my_ubuntu --mount type=volume,src=exam_docker,dst=/home/exam_docker --rm ubuntu:latest bash
+
+lancement du container test authentication
+docker container run -d --name test_authentication --mount type=volume,src=exam_docker,dst=/home/exam_docher --rm test_authentication:latest bash

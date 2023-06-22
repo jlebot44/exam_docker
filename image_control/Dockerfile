@@ -1,0 +1,15 @@
+FROM ubuntu:latest
+
+RUN apt-get update \
+    && apt-get install -y \
+    python3 \
+    pip \
+    curl \
+    nano \
+    && pip install requests
+
+ADD test_status.py /home/test_status.py
+
+WORKDIR /home
+
+
