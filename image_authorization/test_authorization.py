@@ -22,32 +22,57 @@ if not os.path.isdir(log_dir):
     os.mkdir(log_dir, mode=0o755)
 
 
+#output template generation
+output = '''
+============================
+    {test}
+    {date}
+============================
+
+request done at "/permissions"
+| username = {user}
+| password = {password}
+| version = {version}
+
+expected result = 200
+actual restult = {status_code}
+
+==>  {test_status}
+
+'''
+
+
 #test execution
-if os.environ.get("LOG") == '1':
-    with open(log_dir + log_file, 'a') as file:
-        file.write(datetime.now().strftime("%d/%m/%Y %H:%M:%S") +\
-                   " : running " + test_name + "\n") 
+date_now = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
-        for i in range(len(username)):
+for i in range(len(username)):
+    for version in versions:            
+        r = requests.get(
+            url='http://{address}:{port}/{num_version}/sentiment'.format(address=api_address, port=api_port, num_version=version),
+            params= {
+                'username': username[i],
+                'password': password[i],
+                'sentence': 'test'})
 
-            file.write("   user : " + username[i] + " | password : " + password[i] + "\n")
-            for version in versions:            
-                r = requests.get(
-                    url='http://{address}:{port}/{num_version}/sentiment'.format(address=api_address, port=api_port, num_version=version),
-                    params= {
-                        'username': username[i],
-                        'password': password[i],
-                        'sentence': 'test'})
+        status_code = r.status_code            
+    
+        if status_code == 200:
+            result = 'SUCCESS'
+        else:
+            result = 'FAILURE'
 
-                status_code = r.status_code            
-            
-                if status_code == 200:
-                    file.write('     -> ' + version + ' - authorization OK\n')
-                else:
-                    file.write('     -> ' + version + ' - /!\ authorization NOK\n')
-        file.write(datetime.now().strftime("%d/%m/%Y %H:%M:%S") +\
-                   " : end of " + test_name + "\n")
-        file.write(" --------------------\n")
-        file.write("\n")
-    file.close()
+        final_result = output.format(test = test_name,
+                            date = date_now,
+                            user = username[i],
+                            password = password[i],
+                            version = version,
+                            status_code = status_code,
+                            test_status = result)
+        
+        print(final_result) 
+
+        if os.environ.get("LOG") == '1':
+            with open(log_dir + log_file, 'a') as file:
+                file.write(final_result)
+                file.close()
 

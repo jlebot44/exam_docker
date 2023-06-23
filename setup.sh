@@ -8,6 +8,6 @@ docker image build ./image_authentication -t test_authentication:latest
 docker image build ./image_authorization -t test_authorization:latest
 docker image build ./image_content -t test_content:latest
 
-
+docker-compose up
 
 
