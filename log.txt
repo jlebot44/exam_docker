@@ -1,0 +1,237 @@
+23/06/2023 08:05:02 : running test #3 - content
+   version : v1 | sentence : life is beautiful
+     -> positif 
+   version : v1 | sentence : that sucks
+     -> negatif 
+   version : v2 | sentence : life is beautiful
+     -> positif 
+   version : v2 | sentence : that sucks
+     -> negatif 
+23/06/2023 08:05:02 : end of test #3 - content
+ --------------------
+
+23/06/2023 08:05:02 : running test #1 - authentication
+   user : alice | password : wonderland
+     -> authentication OK
+   user : bob | password : builder
+     -> authentication OK
+   user : clementine | password : mandarine
+     -> /!\ authentication NOK
+23/06/2023 08:05:02 : end of test #1 - authentication
+ --------------------
+
+23/06/2023 08:05:02 : running test #2 - autorization
+   user : alice | password : wonderland
+     -> v1 - authorization OK
+     -> v2 - authorization OK
+   user : bob | password : builder
+     -> v1 - authorization OK
+     -> v2 - /!\ authorization NOK
+23/06/2023 08:05:02 : end of test #2 - autorization
+ --------------------
+
+23/06/2023 08:05:28 : running test #2 - autorization
+   user : alice | password : wonderland
+     -> v1 - authorization OK
+     -> v2 - authorization OK
+   user : bob | password : builder
+     -> v1 - authorization OK
+     -> v2 - /!\ authorization NOK
+23/06/2023 08:05:28 : end of test #2 - autorization
+ --------------------
+
+23/06/2023 08:05:28 : running test #1 - authentication
+   user : alice | password : wonderland
+     -> authentication OK
+   user : bob | password : builder
+     -> authentication OK
+   user : clementine | password : mandarine
+     -> /!\ authentication NOK
+23/06/2023 08:05:28 : end of test #1 - authentication
+ --------------------
+
+23/06/2023 08:05:28 : running test #3 - content
+   version : v1 | sentence : life is beautiful
+     -> positif 
+   version : v1 | sentence : that sucks
+     -> negatif 
+   version : v2 | sentence : life is beautiful
+     -> positif 
+   version : v2 | sentence : that sucks
+     -> negatif 
+23/06/2023 08:05:28 : end of test #3 - content
+ --------------------
+
+
+============================
+    test #1 - authentication
+    23/06/2023 11:06:29
+============================
+
+request done at "/permissions"
+| username = alice
+| password = wonderland
+
+expected result = 200
+actual restult = 200
+
+==>  SUCCESS
+
+
+============================
+    test #1 - authentication
+    23/06/2023 11:06:29
+============================
+
+request done at "/permissions"
+| username = bob
+| password = builder
+
+expected result = 200
+actual restult = 200
+
+==>  SUCCESS
+
+
+============================
+    test #1 - authentication
+    23/06/2023 11:06:29
+============================
+
+request done at "/permissions"
+| username = clementine
+| password = mandarine
+
+expected result = 200
+actual restult = 403
+
+==>  FAILURE
+
+
+============================
+    test #3 - content
+    23/06/2023 11:06:30
+============================
+
+request done at "/permissions"
+| username = alice
+| password = wonderland
+| sentence = life is beautiful
+
+expected result = positive
+actual restult = positive
+
+==>  SUCCESS
+
+
+============================
+    test #3 - content
+    23/06/2023 11:06:30
+============================
+
+request done at "/permissions"
+| username = alice
+| password = wonderland
+| sentence = that sucks
+
+expected result = negative
+actual restult = negative
+
+==>  SUCCESS
+
+
+============================
+    test #3 - content
+    23/06/2023 11:06:30
+============================
+
+request done at "/permissions"
+| username = alice
+| password = wonderland
+| sentence = life is beautiful
+
+expected result = positive
+actual restult = positive
+
+==>  SUCCESS
+
+
+============================
+    test #3 - content
+    23/06/2023 11:06:30
+============================
+
+request done at "/permissions"
+| username = alice
+| password = wonderland
+| sentence = that sucks
+
+expected result = negative
+actual restult = negative
+
+==>  SUCCESS
+
+
+============================
+    test #2 - autorization
+    23/06/2023 11:06:30
+============================
+
+request done at "/permissions"
+| username = alice
+| password = wonderland
+| version = v1
+
+expected result = 200
+actual restult = 200
+
+==>  SUCCESS
+
+
+============================
+    test #2 - autorization
+    23/06/2023 11:06:30
+============================
+
+request done at "/permissions"
+| username = alice
+| password = wonderland
+| version = v2
+
+expected result = 200
+actual restult = 200
+
+==>  SUCCESS
+
+
+============================
+    test #2 - autorization
+    23/06/2023 11:06:30
+============================
+
+request done at "/permissions"
+| username = bob
+| password = builder
+| version = v1
+
+expected result = 200
+actual restult = 200
+
+==>  SUCCESS
+
+
+============================
+    test #2 - autorization
+    23/06/2023 11:06:30
+============================
+
+request done at "/permissions"
+| username = bob
+| password = builder
+| version = v2
+
+expected result = 200
+actual restult = 403
+
+==>  FAILURE
+
